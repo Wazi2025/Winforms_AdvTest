@@ -1,4 +1,8 @@
-![Console_to_WinForms](https://img.shields.io/badge/Console➡️WinForms-WIP-FF0000)
+![Status](https://img.shields.io/badge/status-WIP-ff0000?style=flat-square)
+![Platform](https://img.shields.io/badge/platform-Windows-blue?style=flat-square)
+![Framework](https://img.shields.io/badge/framework-.NET%208+-informational?style=flat-square)
+![Language](https://img.shields.io/badge/language-C%23-178600?style=flat-square)
+![UI](https://img.shields.io/badge/UI-WinForms-lightgrey?style=flat-square)
 
 # Project "Adventure"
 
