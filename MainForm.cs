@@ -59,7 +59,7 @@ public partial class Form1 : Form
         InitializeComponent();
 
         this.Name = "MainForm";
-        this.Text = "Main";
+        this.Text = "The Adventure";
         this.Size = new System.Drawing.Size(500, 500);
         this.StartPosition = FormStartPosition.CenterScreen;
 
