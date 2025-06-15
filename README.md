@@ -2,6 +2,6 @@
 
 # Project "Adventure"
 
-Part of my "CLI/Console-based to WinForms" series
+Part of my "CLI/Console-based to WinForms" series.
 
 Extremely rudimentary for now.
