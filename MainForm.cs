@@ -46,8 +46,8 @@ public partial class Form1 : Form
         string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
         string fileDataDir = "gfx";
         string fileName = "forest2.jpg";
-        //Combine application path with where the csv file is (\Data\scrubbed.csv)
-        //Should eliminate hardcoding of file path as long as it's in the \Data dir with the compiled .exe a level above
+
+        //Combine application path with where the assets are (gfx dir)        
         string filePath = Path.Combine(projectRoot, fileDataDir, fileName);
         Image myImage = new Bitmap(filePath);
 
