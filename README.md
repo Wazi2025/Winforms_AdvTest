@@ -8,4 +8,4 @@
 
 Part of my "CLI/Console-based to WinForms" series.
 
-Extremely rudimentary for now.
+Pretty rudimentary for now.

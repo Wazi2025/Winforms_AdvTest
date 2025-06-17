@@ -19,7 +19,7 @@ static class Program
 
     //instantiate rooms
     public static Room bridge = new Room("Bridge", "The control panels blink in a rhythmic pattern. You notice a computer with a thin slot in it. You're on the bridge of your ship.");
-    public static Room dockingBay = new Room("Docking Bay", "You're in the docking bay. There's a shuttle here. A depressed robot stands in front of it's entrance.");
+    public static Room dockingBay = new Room("Docking Bay", "You're in the docking bay. There's a shuttle here.");
     public static Room storageRoom = new Room("Storage Room", "Crates and boxes fill this storage room. It's dimly lit.");
 
     //Instantiate Player        
