@@ -33,6 +33,7 @@ public class Player
             CurrentRoom = CurrentRoom.Exits[playerAction];
             description = $"You move {playerAction} and enter the {CurrentRoom.Name}.\n{CurrentRoom.Description}\n\n";
 
+            //Load gfx path for CurrentRoom into picturebox (and display image)
             Form1.pictureBox.Load(CurrentRoom.RoomGfxPath);
 
             //Call methods

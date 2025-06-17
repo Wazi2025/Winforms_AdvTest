@@ -5,6 +5,7 @@ namespace Winforms_AdvTest;
 public partial class Form1 : Form
 {
 
+    //Instantiate tbInput (for player input), rtbStoryBox (for room description, items, inventory etc..) and pictureBox (for images)
     static public TextBox tbInput = new TextBox();
     static public RichTextBox rtbStoryBox = new RichTextBox();
     static public PictureBox pictureBox = new PictureBox();
@@ -14,41 +15,18 @@ public partial class Form1 : Form
         string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
         string fileDataDir = "gfx";
 
-        //Combine application path with where the assets are (gfx dir)        
-        string filePathBridge = Path.Combine(projectRoot, fileDataDir, "spaceShipBridge.jpg");
-        string filePathDockingBay = Path.Combine(projectRoot, fileDataDir, "dockingBay.jpg");
-        string filePathStorageRoom = Path.Combine(projectRoot, fileDataDir, "storageRoom.jpg");
+        string filePathStartScreen = Path.Combine(projectRoot, fileDataDir, "hhg2.png");
 
-        Program.bridge.RoomGfxPath = filePathBridge;
-        Program.dockingBay.RoomGfxPath = filePathDockingBay;
-        Program.storageRoom.RoomGfxPath = filePathStorageRoom;
-
-        //PictureBox pictureBox = new PictureBox();
-        pictureBox.Load(filePathBridge);
-        //Set the application path
-        // string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
-        // string fileDataDir = "gfx";
-        // string fileName = "spaceShipBridge.jpg";
-
-        // //Combine application path with where the assets are (gfx dir)        
-        // string filePath = Path.Combine(projectRoot, fileDataDir, fileName);
-
-        //PictureBox pictureBox = new PictureBox();
-        // pictureBox.Image = Image.FromFile(filePath);
+        pictureBox.Load(filePathStartScreen);
         pictureBox.Size = new System.Drawing.Size(500, 500);
 
-        //pictureBox.SizeMode = PictureBoxSizeMode.Normal;
-
-        //tbInput = new TextBox();
         tbInput.Location = new System.Drawing.Point(0, 300);
         tbInput.ReadOnly = false;
         tbInput.Width = 200;
-        //tbInput.Text = "What now?";
 
         //Hook up event
         tbInput.KeyDown += tbInput_KeyDown;
 
-        //rtbStoryBox = new RichTextBox();
         rtbStoryBox.Dock = DockStyle.Top;
         rtbStoryBox.ForeColor = Color.Black;
         rtbStoryBox.BackColor = Color.WhiteSmoke;
@@ -67,7 +45,6 @@ public partial class Form1 : Form
         table.AutoSize = true;
 
         this.Controls.Add(table);
-
     }
 
     private void tbInput_KeyDown(object sender, KeyEventArgs e)
@@ -85,22 +62,6 @@ public partial class Form1 : Form
         }
     }
 
-    private void Init_BackGround()
-    {
-        //Set the application path
-        string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
-        string fileDataDir = "gfx";
-        string fileName = "spaceShipBridge.jpg";
-
-        //Combine application path with where the assets are (gfx dir)        
-        string filePath = Path.Combine(projectRoot, fileDataDir, fileName);
-        // Image myImage = new Bitmap(filePath);
-
-        // this.BackgroundImage = myImage;
-        PictureBox pictureBox = new PictureBox();
-
-        pictureBox.Image = Image.FromFile(filePath);
-    }
 
     public Form1()
     {
@@ -111,7 +72,7 @@ public partial class Form1 : Form
         this.WindowState = FormWindowState.Maximized;
         this.StartPosition = FormStartPosition.CenterScreen;
 
-        //Init_BackGround();
+        //Call method
         Initialize();
     }
 }

@@ -25,10 +25,21 @@ static class Program
     //Instantiate Player        
     public static Player player = new Player(bridge);
 
-    //public static PictureBox pictureBox = new PictureBox();
-
     public static int Initialize()
     {
+        string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
+        string fileDataDir = "gfx";
+
+        //Combine application path with where the assets are (gfx dir)        
+        string filePathBridge = Path.Combine(projectRoot, fileDataDir, "spaceShipBridge.jpg");
+        string filePathDockingBay = Path.Combine(projectRoot, fileDataDir, "dockingBay.jpg");
+        string filePathStorageRoom = Path.Combine(projectRoot, fileDataDir, "storageRoom.jpg");
+
+        //Set gfx path for the different rooms
+        bridge.RoomGfxPath = filePathBridge;
+        dockingBay.RoomGfxPath = filePathDockingBay;
+        storageRoom.RoomGfxPath = filePathStorageRoom;
+
         // Connecting rooms 
         dockingBay.AddExit(player.south, bridge);
         storageRoom.AddExit(player.north, bridge);
@@ -43,19 +54,6 @@ static class Program
         dockingBay.Items.Add("blaster", dockingBay);
         storageRoom.Items.Add("broom", dockingBay);
         storageRoom.Items.Add("bucket", dockingBay);
-
-
-        // string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
-        // string fileDataDir = "gfx";
-
-        // //Combine application path with where the assets are (gfx dir)        
-        // string filePathBridge = Path.Combine(projectRoot, fileDataDir, "spaceShipBridge.jpg");
-        // string filePathDockingBay = Path.Combine(projectRoot, fileDataDir, "dockingBay.jpg");
-        // string filePathStorageRoom = Path.Combine(projectRoot, fileDataDir, "storageRoom.jpg");
-
-        // bridge.RoomGfx = Image.FromFile(filePathBridge);
-        // dockingBay.RoomGfx = Image.FromFile(filePathDockingBay);
-        // storageRoom.RoomGfx = Image.FromFile(filePathStorageRoom);
 
         //Add items to player inventory
         // player.Inventory.Add("some pocket lint");
@@ -73,65 +71,11 @@ static class Program
         //items is all items in all rooms combined from Initialize method
         items = Initialize();
 
-        // while (true)
-        // {
-        //Prolly add some more descriptive text here, lol!            
-        // if (!gameStarted)
-        // {
-        //     Console.WriteLine("Hello there, stranger. Type 'help' for possible commands");
-        //     gameStarted = true;
-        // }
-
-        // Console.WriteLine("What now?");
-        // string input = Console.ReadLine().Trim().ToLower();
-
-        // //Break loop if user inputs 'quit' or 'exit'
-        // if (input == player.exit || input == player.quit)
-        //     break;
-
-
         if (player.Inventory.Count == items)
         //if (player.Inventory.Count == 1) //testing
         {
             string winner2 = $"Congratulations! You managed to collect {player.Inventory.Count} of {items} items. An amazing performance!\n";
 
-            // //Add some "animation" ;-)
-            // foreach (char c in winner2)
-            // {
-            //     Console.Write(c);
-            //     Thread.Sleep(20);
-            // }
-
         }
-
-        //player.Action(input, player);
-        // }
     }
-
-    static public string UserAction(string userInput)
-    {
-
-
-        return "test";
-
-        // userInput = userInput.ToLower();
-
-        // if (userInput == "north")
-        // {
-        //     return "You go North!";
-        // }
-        // else if (userInput == "south")
-        // {
-        //     return "You brave the southern path!";
-        // }
-        // else if (userInput == "exit")
-        // {
-        //     Application.Exit();
-        //     return "";
-        // }
-        // else
-        // {
-        //     return "No such path!";
-        // }
-    }//End UserAction
 }
