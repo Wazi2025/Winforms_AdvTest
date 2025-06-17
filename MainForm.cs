@@ -1,10 +1,12 @@
+using Winforms_AdvTest.classes;
+
 namespace Winforms_AdvTest;
 
 public partial class Form1 : Form
 {
 
-    private TextBox tbInput;
-    private RichTextBox rtbStoryBox;
+    static public TextBox tbInput;
+    static public RichTextBox rtbStoryBox;
 
     public void Initialize()
     {
@@ -33,7 +35,8 @@ public partial class Form1 : Form
         {
             string userInput = tbInput.Text;
 
-            rtbStoryBox.Text = Program.UserAction(userInput);
+            //rtbStoryBox.Text = Program.UserAction(userInput);
+            rtbStoryBox.Text = Program.player.Action(userInput, Program.player);
             tbInput.Clear();
             tbInput.Text = "What now?";
             tbInput.SelectAll();
