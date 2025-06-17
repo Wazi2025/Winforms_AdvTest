@@ -14,15 +14,16 @@ public partial class Form1 : Form
         //Set the application path
         string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
         string fileDataDir = "gfx";
-        string fileName = "forest2.jpg";
+        string fileName = "spaceShipBridge.jpg";
 
         //Combine application path with where the assets are (gfx dir)        
         string filePath = Path.Combine(projectRoot, fileDataDir, fileName);
 
         PictureBox pictureBox = new PictureBox();
         pictureBox.Image = Image.FromFile(filePath);
+        pictureBox.Size = new System.Drawing.Size(500, 500);
 
-        pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+        pictureBox.SizeMode = PictureBoxSizeMode.Normal;
 
         tbInput = new TextBox();
         tbInput.Location = new System.Drawing.Point(0, 300);
@@ -72,7 +73,7 @@ public partial class Form1 : Form
         //Set the application path
         string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
         string fileDataDir = "gfx";
-        string fileName = "forest2.jpg";
+        string fileName = "spaceShipBridge.jpg";
 
         //Combine application path with where the assets are (gfx dir)        
         string filePath = Path.Combine(projectRoot, fileDataDir, fileName);
