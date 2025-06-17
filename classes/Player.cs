@@ -45,6 +45,9 @@ public class Player
         {
             description = $"{CurrentRoom.Name}\n{CurrentRoom.Description}\n\n";
 
+            //Load gfx path for CurrentRoom into picturebox (and display image)
+            Form1.pictureBox.Load(CurrentRoom.RoomGfxPath);
+
             //Call methods
             description += IterateItems(player);
             description += DisplayExits(CurrentRoom);
