@@ -79,11 +79,14 @@ public class Player
         }
     }
 
-    void Help(Player player)
+    string Help(Player player)
     {
+        string description = "";
+
         //show what kind of commands/actions the user can perform        
-        Console.WriteLine("List of possible actions to perform: ");
-        Console.WriteLine($"{player.look}, {player.inv}, {player.get}, {player.use}, {player.north}, {player.south}, {player.east}, {player.west} \n");
+        description = $"List of possible actions to perform: \n";
+        description += $"{player.look}, {player.inv}, {player.get}, {player.use}, {player.north}, {player.south}, {player.east}, {player.west} \n";
+        return description;
     }
     static public string DisplayExits(Room CurrentRoom)
     {
@@ -110,12 +113,10 @@ public class Player
         }
         if (manyExits)
             description = $"{exitTextMany} {exitsList}\n";
-        //Console.WriteLine($"{exitTextMany} {exitsList}\n");
         else
             description = $"{exitText} {exitsList}\n";
-        //Console.WriteLine($"{exitText} {exitsList}\n");
-        return description;
 
+        return description;
     }//End DisplayExits
 
     string IterateItems(Player player)
@@ -130,11 +131,8 @@ public class Player
         //iterate items in room
         foreach (var item in player.CurrentRoom.Items)
             description += $"{item.Key}\n";
-        //Console.WriteLine(item.Key);
 
         return $"{description}\n";
-        //Add some space after item iteration
-        //Console.WriteLine();
     }//End of IterateItems
 
     string ShowInventory(Player player)
@@ -143,31 +141,26 @@ public class Player
         const string itemsText = "You have: ";
         const string noItemsText = "You have no items";
 
-        //Show player's inventory   
         //Check if player has any items
         if (player.Inventory.Count > 0)
-            //Console.WriteLine(ItemsText);
             description = itemsText;
         else
             description = noItemsText;
-        //Console.WriteLine(noItemsText);
 
+        //Show player's inventory 
         for (int i = 0; i < player.Inventory.Capacity; i++)
-        {
-            //Console.WriteLine($"- {player.Inventory[i]}");
             description = $"- {player.Inventory[i]}";
-        }
+
         return description;
-        //Console.WriteLine();
     }//End of ShowInventory
 
-    void UseItem(string playerAction, Player player)
+    string UseItem(string playerAction, Player player)
     {
+        string description = "";
         //Note: this is just a test. Will need to implement (somehow) some sort of Infocom type parser.
 
         string[] tempItem = playerAction.Split(" ");
 
-        //foreach (var item in player.CurrentRoom.Puzzles)
         for (int j = 0; j < player.CurrentRoom.Puzzles.Count; j++)
         {
             if (player.CurrentRoom.Name.Equals("Bridge"))
@@ -180,8 +173,8 @@ public class Player
 
                     if (!hasItem)
                     {
-                        Console.WriteLine($"You are not in posession of a {tempItem[1]}");
-                        return;
+                        description = $"You are not in posession of a {tempItem[1]}";
+                        return description;
                     }
                     // else if (item.Key != tempItem[1] && hasItem)
                     // {
@@ -190,18 +183,19 @@ public class Player
                     // }
                     else if (item.Key == tempItem[1] && hasItem && !correctRoom)
                     {
-                        Console.WriteLine($"Unable to use {tempItem[1]} here. Perhaps another room?");
-                        return;
+                        description = $"Unable to use {tempItem[1]} here. Perhaps another room?";
+                        return description;
                     }
                     else if (item.Key == tempItem[1] && hasItem && correctRoom)
                     {
-                        Console.WriteLine($"You insert the {item.Key} into the computer slot.");
-                        Console.WriteLine("A hologram of a beautiful woman coalesce in front of you. 'Hello, I am SAL. How may I be of service?'");
+                        description = $"You insert the {item.Key} into the computer slot.\n";
+                        description += "A hologram of a beautiful woman coalesce in front of you. 'Hello, I am SAL. How may I be of service?'\n";
                         player.CurrentRoom.Description += " There is a hologram of a beautiful woman here.";
-                        return;
+                        return description;
                     }
 
                 }
+
             }//End of Bridge "puzzle
 
             else if (player.CurrentRoom.Name.Equals("Docking Bay"))
@@ -214,29 +208,30 @@ public class Player
 
                     if (!hasItem)
                     {
-                        Console.WriteLine($"You are not in posession of a {tempItem[1]}");
-                        return;
+                        description = $"You are not in posession of a {tempItem[1]}";
+                        return description;
                     }
                     else if (item.Key == tempItem[1] && hasItem && !correctRoom)
                     {
-                        Console.WriteLine($"Unable to use {tempItem[1]} here. Perhaps another room?");
-                        return;
+                        description = $"Unable to use {tempItem[1]} here. Perhaps another room?";
+                        return description;
                     }
                     else if (item.Key == tempItem[1] && hasItem && correctRoom)
                     {
-                        Console.WriteLine($"You aim the {item.Key} at the robot and blast it to smithereens!");
-                        Console.WriteLine("He looks slightly more depressed than before. ");
+                        description = $"You aim the {item.Key} at the robot and blast it to smithereens!";
+                        description += "He looks slightly more depressed than before. ";
                         player.CurrentRoom.Description += " Smoldering ruins of what used to be a slightly depressed robot lies depressingly in front of the shuttle.";
-                        return;
+                        return description;
                     }
                 }
             }//End of Docking Bay "puzzle"
-
         }//End of Puzzles loop
+        return description;
 
-    }//End method
-    void GetItem(string playerAction, Player player)
+    }//End UseItem method
+    string GetItem(string playerAction, Player player)
     {
+        string description = "";
         bool itemFound = false;
         bool missingItem = false;
         string tempItem = "";
@@ -286,9 +281,10 @@ public class Player
             else
             {
                 //inform user if input is missing a string (or item in this case). e.g. 'get card'/get keycard
-                Console.WriteLine("What do you want to get?");
+                description = "What do you want to get?";
                 missingItem = true;
-                break;
+                return description;
+                //break;
             }
 
             if (arrayWords[1].ToLower() == item.Key)
@@ -299,14 +295,17 @@ public class Player
                 //Remove item from CurrentRoom's itemlist                
                 player.CurrentRoom.Items.Remove(removeRoomItem);
 
-                Console.WriteLine($"You pick up the {removeRoomItem}.");
+                description = $"You pick up the {removeRoomItem}.";
                 itemFound = true;
-                break;
+                return description;
+                //break;
             }
         }
 
         //Inform user if item is not in CurrentRoom's itemlist
         if (!itemFound && missingItem == false)
-            Console.WriteLine($"There is no '{arrayWords[1]}' to pick up!\n");
+            description = $"There is no '{arrayWords[1]}' to pick up!\n";
+
+        return description;
     }//End of GetItem
 }//End of class Player
