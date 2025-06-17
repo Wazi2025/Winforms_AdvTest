@@ -88,7 +88,7 @@ public class Player
         }
     }
 
-    string Help(Player player)
+    static private string Help(Player player)
     {
         string description = "";
 
@@ -97,7 +97,7 @@ public class Player
         description += $"{player.look}, {player.inv}, {player.get}, {player.use}, {player.north}, {player.south}, {player.east}, {player.west} \n";
         return description;
     }
-    static public string DisplayExits(Room CurrentRoom)
+    private string DisplayExits(Room CurrentRoom)
     {
         string description = "";
 
@@ -128,7 +128,7 @@ public class Player
         return description;
     }//End DisplayExits
 
-    string IterateItems(Player player)
+    private string IterateItems(Player player)
     {
         string description = "";
         const string youSeeText = "You see: ";
@@ -144,7 +144,7 @@ public class Player
         return $"{description}\n";
     }//End of IterateItems
 
-    string ShowInventory(Player player)
+    private string ShowInventory(Player player)
     {
         string description = "";
         const string itemsText = "You have: ";
@@ -163,7 +163,7 @@ public class Player
         return description;
     }//End of ShowInventory
 
-    string UseItem(string playerAction, Player player)
+    private string UseItem(string playerAction, Player player)
     {
         string description = "";
         //Note: this is just a test. Will need to implement (somehow) some sort of Infocom type parser.
@@ -238,7 +238,7 @@ public class Player
         return description;
 
     }//End UseItem method
-    string GetItem(string playerAction, Player player)
+    private string GetItem(string playerAction, Player player)
     {
         string description = "";
         bool itemFound = false;

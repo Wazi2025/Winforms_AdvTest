@@ -10,7 +10,7 @@ public partial class Form1 : Form
     static public RichTextBox rtbStoryBox = new RichTextBox();
     static public PictureBox pictureBox = new PictureBox();
 
-    public void Initialize()
+    private void Initialize()
     {
         string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
         string fileDataDir = "gfx";

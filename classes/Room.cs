@@ -40,7 +40,7 @@ public class Room
         NumberOfExits.Add(playerAction);
     }
 
-    void InitializePuzzles()
+    private void InitializePuzzles()
     {
         //Note: Prolly will have to create some sort of "puzzle" class instead
         Puzzles.Add("blaster", "Docking Bay");
