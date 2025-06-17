@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Winforms_AdvTest", "Winforms_AdvTest.csproj", "{A24EAFC0-608D-B0AF-3A5B-7DF7874D4F72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Winforms_TheAdventure", "Winforms_TheAdventure.csproj", "{A24EAFC0-608D-B0AF-3A5B-7DF7874D4F72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

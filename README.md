@@ -8,4 +8,4 @@
 
 Part of my "CLI/Console-based to WinForms" series.
 
-This is the Winforms version of "Project Adventure 3". "Plays" exactly the same only in a Windows environment (with graphics)
+This is the Winforms version of "Project Adventure 3". "Plays" exactly the same only in a Windows environment (with graphics).
