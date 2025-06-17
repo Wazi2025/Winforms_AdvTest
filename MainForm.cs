@@ -7,13 +7,27 @@ public partial class Form1 : Form
 
     static public TextBox tbInput;
     static public RichTextBox rtbStoryBox;
+    static public PictureBox pictureBox;
 
     public void Initialize()
     {
+        //Set the application path
+        string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
+        string fileDataDir = "gfx";
+        string fileName = "forest2.jpg";
+
+        //Combine application path with where the assets are (gfx dir)        
+        string filePath = Path.Combine(projectRoot, fileDataDir, fileName);
+
+        PictureBox pictureBox = new PictureBox();
+        pictureBox.Image = Image.FromFile(filePath);
+
+        pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+
         tbInput = new TextBox();
-        tbInput.Location = new System.Drawing.Point(0, 100);
+        tbInput.Location = new System.Drawing.Point(0, 300);
         tbInput.ReadOnly = false;
-        tbInput.Text = "What now?";
+        //tbInput.Text = "What now?";
 
         //Hook up event
         tbInput.KeyDown += tbInput_KeyDown;
@@ -21,12 +35,23 @@ public partial class Form1 : Form
         rtbStoryBox = new RichTextBox();
         rtbStoryBox.Dock = DockStyle.Top;
         rtbStoryBox.ForeColor = Color.Black;
-        rtbStoryBox.BackColor = Color.LightSalmon;
+        rtbStoryBox.BackColor = Color.WhiteSmoke;
         rtbStoryBox.ReadOnly = true;
-        rtbStoryBox.Text = "Just a test";
+        rtbStoryBox.Text = "Hello there, stranger. Type 'help' for possible commands";
+        rtbStoryBox.Height = 300;
 
-        this.Controls.Add(tbInput);
-        this.Controls.Add(rtbStoryBox);
+        TableLayoutPanel table = new TableLayoutPanel();
+        table.ColumnCount = 1;
+        table.RowCount = 3;
+        table.Controls.Add(tbInput, 0, 2);
+        table.Controls.Add(rtbStoryBox, 0, 1);
+        table.Controls.Add(pictureBox, 0, 0);
+
+        table.Dock = DockStyle.Top;
+        table.AutoSize = true;
+
+        this.Controls.Add(table);
+
     }
 
     private void tbInput_KeyDown(object sender, KeyEventArgs e)
@@ -35,7 +60,6 @@ public partial class Form1 : Form
         {
             string userInput = tbInput.Text;
 
-            //rtbStoryBox.Text = Program.UserAction(userInput);
             rtbStoryBox.Text = Program.player.Action(userInput, Program.player);
             tbInput.Clear();
             tbInput.Text = "What now?";
@@ -52,9 +76,12 @@ public partial class Form1 : Form
 
         //Combine application path with where the assets are (gfx dir)        
         string filePath = Path.Combine(projectRoot, fileDataDir, fileName);
-        Image myImage = new Bitmap(filePath);
+        // Image myImage = new Bitmap(filePath);
 
-        this.BackgroundImage = myImage;
+        // this.BackgroundImage = myImage;
+        PictureBox pictureBox = new PictureBox();
+
+        pictureBox.Image = Image.FromFile(filePath);
     }
 
     public Form1()
@@ -63,10 +90,10 @@ public partial class Form1 : Form
 
         this.Name = "MainForm";
         this.Text = "The Adventure";
-        this.Size = new System.Drawing.Size(500, 500);
+        this.WindowState = FormWindowState.Maximized;
         this.StartPosition = FormStartPosition.CenterScreen;
 
-        Init_BackGround();
+        //Init_BackGround();
         Initialize();
     }
 }

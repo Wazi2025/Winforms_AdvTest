@@ -33,13 +33,9 @@ public class Player
             CurrentRoom = CurrentRoom.Exits[playerAction];
             description = $"You move {playerAction} and enter the {CurrentRoom.Name}.\n" + CurrentRoom.Description;
 
-            //Form1.rtbStoryBox.Text = description;
-            // Console.WriteLine($"You move {playerAction} and enter the {CurrentRoom.Name}.\n");
-            // Console.WriteLine(CurrentRoom.Description);
-
             //Call methods
-            IterateItems(player);
-            DisplayExits(CurrentRoom);
+            description += IterateItems(player);
+            description += DisplayExits(CurrentRoom);
             return description;
         }
         else if (playerAction == look)
@@ -49,14 +45,14 @@ public class Player
             // Console.WriteLine(CurrentRoom.Description);
 
             //Call methods
-            IterateItems(player);
-            DisplayExits(CurrentRoom);
+            description += IterateItems(player);
+            description += DisplayExits(CurrentRoom);
             return description;
         }
         else if (playerAction == inv)
         {
             //Call method
-            ShowInventory(player);
+            description += ShowInventory(player);
             return description;
         }
         else if (playerAction.Contains(get))
@@ -89,8 +85,10 @@ public class Player
         Console.WriteLine("List of possible actions to perform: ");
         Console.WriteLine($"{player.look}, {player.inv}, {player.get}, {player.use}, {player.north}, {player.south}, {player.east}, {player.west} \n");
     }
-    static public void DisplayExits(Room CurrentRoom)
+    static public string DisplayExits(Room CurrentRoom)
     {
+        string description = "";
+
         //check number of exits for CurrentRoom (the room the player is in)       
         string exitsList = "";
         const string exitText = "There is an exit:";
@@ -111,46 +109,56 @@ public class Player
             }
         }
         if (manyExits)
-            Console.WriteLine($"{exitTextMany} {exitsList}\n");
+            description = $"{exitTextMany} {exitsList}\n";
+        //Console.WriteLine($"{exitTextMany} {exitsList}\n");
         else
-            Console.WriteLine($"{exitText} {exitsList}\n");
-
+            description = $"{exitText} {exitsList}\n";
+        //Console.WriteLine($"{exitText} {exitsList}\n");
+        return description;
 
     }//End DisplayExits
 
-    void IterateItems(Player player)
+    string IterateItems(Player player)
     {
+        string description = "";
         const string youSeeText = "You see: ";
 
         //Check if there are items in the room
         if (player.CurrentRoom.Items.Count > 0)
-            Console.WriteLine(youSeeText);
+            description = $"{youSeeText}\n";
 
         //iterate items in room
         foreach (var item in player.CurrentRoom.Items)
-            Console.WriteLine(item.Key);
+            description += $"{item.Key}\n";
+        //Console.WriteLine(item.Key);
 
+        return $"{description}\n";
         //Add some space after item iteration
-        Console.WriteLine();
+        //Console.WriteLine();
     }//End of IterateItems
 
-    void ShowInventory(Player player)
+    string ShowInventory(Player player)
     {
-        const string ItemsText = "You have: ";
+        string description = "";
+        const string itemsText = "You have: ";
         const string noItemsText = "You have no items";
 
         //Show player's inventory   
         //Check if player has any items
         if (player.Inventory.Count > 0)
-            Console.WriteLine(ItemsText);
+            //Console.WriteLine(ItemsText);
+            description = itemsText;
         else
-            Console.WriteLine(noItemsText);
+            description = noItemsText;
+        //Console.WriteLine(noItemsText);
 
         for (int i = 0; i < player.Inventory.Capacity; i++)
         {
-            Console.WriteLine($"- {player.Inventory[i]}");
+            //Console.WriteLine($"- {player.Inventory[i]}");
+            description = $"- {player.Inventory[i]}";
         }
-        Console.WriteLine();
+        return description;
+        //Console.WriteLine();
     }//End of ShowInventory
 
     void UseItem(string playerAction, Player player)
