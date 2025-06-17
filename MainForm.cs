@@ -32,6 +32,7 @@ public partial class Form1 : Form
         rtbStoryBox.BackColor = Color.WhiteSmoke;
         rtbStoryBox.ReadOnly = true;
         rtbStoryBox.Text = "Hello there, stranger. Type 'help' for possible commands";
+        rtbStoryBox.Font = new Font("Tahoma", 12);
         rtbStoryBox.Height = 300;
 
         TableLayoutPanel table = new TableLayoutPanel();

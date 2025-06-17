@@ -182,7 +182,7 @@ public class Player
 
                     if (!hasItem)
                     {
-                        description = $"You are not in posession of a {tempItem[1]}";
+                        description = $"You are not in posession of a {tempItem[1]}.";
                         return description;
                     }
                     // else if (item.Key != tempItem[1] && hasItem)
