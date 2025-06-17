@@ -15,8 +15,7 @@ public class Player
     readonly public string south = "south";
     readonly public string east = "east";
     readonly public string west = "west";
-    readonly public string exit = "exit";
-    readonly public string quit = "quit";
+    readonly string exit = "exit";
 
     public Player(Room startRoom)
     {
@@ -58,20 +57,25 @@ public class Player
         else if (playerAction.Contains(get))
         {
             //Call method
-            GetItem(playerAction, player);
+            description = GetItem(playerAction, player);
             return description;
         }
         else if (playerAction.Contains(use))
         {
             //Call method
-            UseItem(playerAction, player);
+            description = UseItem(playerAction, player);
             return description;
         }
         else if (playerAction == help)
         {
             //Call method
-            Help(player);
+            description = Help(player);
             return description;
+        }
+        else if (playerAction == exit)
+        {
+            Application.Exit();
+            return "";
         }
         else
         {
@@ -148,7 +152,7 @@ public class Player
             description = noItemsText;
 
         //Show player's inventory 
-        for (int i = 0; i < player.Inventory.Capacity; i++)
+        for (int i = 0; i < player.Inventory.Count; i++)
             description = $"- {player.Inventory[i]}";
 
         return description;
