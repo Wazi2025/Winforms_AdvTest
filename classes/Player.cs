@@ -30,7 +30,7 @@ public class Player
         if (CurrentRoom.Exits.ContainsKey(playerAction))
         {
             CurrentRoom = CurrentRoom.Exits[playerAction];
-            description = $"You move {playerAction} and enter the {CurrentRoom.Name}.\n" + CurrentRoom.Description;
+            description = $"You move {playerAction} and enter the {CurrentRoom.Name}.\n{CurrentRoom.Description}\n";
 
             //Call methods
             description += IterateItems(player);
@@ -39,9 +39,7 @@ public class Player
         }
         else if (playerAction == look)
         {
-            description = $"{CurrentRoom.Name}\n" + CurrentRoom.Description;
-            // Console.WriteLine($"{CurrentRoom.Name}\n");
-            // Console.WriteLine(CurrentRoom.Description);
+            description = $"{CurrentRoom.Name}\n{CurrentRoom.Description}\n";
 
             //Call methods
             description += IterateItems(player);
@@ -147,13 +145,13 @@ public class Player
 
         //Check if player has any items
         if (player.Inventory.Count > 0)
-            description = itemsText;
+            description = $"{itemsText}\n";
         else
-            description = noItemsText;
+            description = $"{noItemsText}\n";
 
         //Show player's inventory 
         for (int i = 0; i < player.Inventory.Count; i++)
-            description = $"- {player.Inventory[i]}";
+            description += $"- {player.Inventory[i]}\n";
 
         return description;
     }//End of ShowInventory

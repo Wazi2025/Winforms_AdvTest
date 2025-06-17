@@ -28,6 +28,7 @@ public partial class Form1 : Form
         tbInput = new TextBox();
         tbInput.Location = new System.Drawing.Point(0, 300);
         tbInput.ReadOnly = false;
+        tbInput.Width = 200;
         //tbInput.Text = "What now?";
 
         //Hook up event
@@ -57,9 +58,11 @@ public partial class Form1 : Form
 
     private void tbInput_KeyDown(object sender, KeyEventArgs e)
     {
+        string userInput;
+
         if (e.KeyCode == Keys.Enter)
         {
-            string userInput = tbInput.Text;
+            userInput = tbInput.Text.ToLower();
 
             rtbStoryBox.Text = Program.player.Action(userInput, Program.player);
             tbInput.Clear();
