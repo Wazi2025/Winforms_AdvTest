@@ -27,10 +27,13 @@ public class Player
     {
         string description = "";
 
+
         if (CurrentRoom.Exits.ContainsKey(playerAction))
         {
             CurrentRoom = CurrentRoom.Exits[playerAction];
-            description = $"You move {playerAction} and enter the {CurrentRoom.Name}.\n{CurrentRoom.Description}\n";
+            description = $"You move {playerAction} and enter the {CurrentRoom.Name}.\n{CurrentRoom.Description}\n\n";
+
+            Form1.pictureBox.Load(CurrentRoom.RoomGfxPath);
 
             //Call methods
             description += IterateItems(player);
@@ -39,7 +42,7 @@ public class Player
         }
         else if (playerAction == look)
         {
-            description = $"{CurrentRoom.Name}\n{CurrentRoom.Description}\n";
+            description = $"{CurrentRoom.Name}\n{CurrentRoom.Description}\n\n";
 
             //Call methods
             description += IterateItems(player);

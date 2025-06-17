@@ -17,6 +17,7 @@ public class Room
     public List<string> NumberOfExits { get; set; }
 
     public Dictionary<string, Room> Exits { get; set; }
+    public string RoomGfxPath { get; set; }
 
     public Room(string name, string description)
     {

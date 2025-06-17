@@ -7,5 +7,3 @@
 # Project "Adventure"
 
 Part of my "CLI/Console-based to WinForms" series.
-
-Pretty rudimentary for now.

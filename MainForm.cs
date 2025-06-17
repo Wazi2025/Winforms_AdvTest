@@ -5,27 +5,41 @@ namespace Winforms_AdvTest;
 public partial class Form1 : Form
 {
 
-    static public TextBox tbInput;
-    static public RichTextBox rtbStoryBox;
-    static public PictureBox pictureBox;
+    static public TextBox tbInput = new TextBox();
+    static public RichTextBox rtbStoryBox = new RichTextBox();
+    static public PictureBox pictureBox = new PictureBox();
 
     public void Initialize()
     {
-        //Set the application path
         string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
         string fileDataDir = "gfx";
-        string fileName = "spaceShipBridge.jpg";
 
         //Combine application path with where the assets are (gfx dir)        
-        string filePath = Path.Combine(projectRoot, fileDataDir, fileName);
+        string filePathBridge = Path.Combine(projectRoot, fileDataDir, "spaceShipBridge.jpg");
+        string filePathDockingBay = Path.Combine(projectRoot, fileDataDir, "dockingBay.jpg");
+        string filePathStorageRoom = Path.Combine(projectRoot, fileDataDir, "storageRoom.jpg");
 
-        PictureBox pictureBox = new PictureBox();
-        pictureBox.Image = Image.FromFile(filePath);
+        Program.bridge.RoomGfxPath = filePathBridge;
+        Program.dockingBay.RoomGfxPath = filePathDockingBay;
+        Program.storageRoom.RoomGfxPath = filePathStorageRoom;
+
+        //PictureBox pictureBox = new PictureBox();
+        pictureBox.Load(filePathBridge);
+        //Set the application path
+        // string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
+        // string fileDataDir = "gfx";
+        // string fileName = "spaceShipBridge.jpg";
+
+        // //Combine application path with where the assets are (gfx dir)        
+        // string filePath = Path.Combine(projectRoot, fileDataDir, fileName);
+
+        //PictureBox pictureBox = new PictureBox();
+        // pictureBox.Image = Image.FromFile(filePath);
         pictureBox.Size = new System.Drawing.Size(500, 500);
 
-        pictureBox.SizeMode = PictureBoxSizeMode.Normal;
+        //pictureBox.SizeMode = PictureBoxSizeMode.Normal;
 
-        tbInput = new TextBox();
+        //tbInput = new TextBox();
         tbInput.Location = new System.Drawing.Point(0, 300);
         tbInput.ReadOnly = false;
         tbInput.Width = 200;
@@ -34,7 +48,7 @@ public partial class Form1 : Form
         //Hook up event
         tbInput.KeyDown += tbInput_KeyDown;
 
-        rtbStoryBox = new RichTextBox();
+        //rtbStoryBox = new RichTextBox();
         rtbStoryBox.Dock = DockStyle.Top;
         rtbStoryBox.ForeColor = Color.Black;
         rtbStoryBox.BackColor = Color.WhiteSmoke;

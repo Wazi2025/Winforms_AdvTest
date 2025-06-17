@@ -25,6 +25,8 @@ static class Program
     //Instantiate Player        
     public static Player player = new Player(bridge);
 
+    //public static PictureBox pictureBox = new PictureBox();
+
     public static int Initialize()
     {
         // Connecting rooms 
@@ -41,6 +43,19 @@ static class Program
         dockingBay.Items.Add("blaster", dockingBay);
         storageRoom.Items.Add("broom", dockingBay);
         storageRoom.Items.Add("bucket", dockingBay);
+
+
+        // string projectRoot = Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName;
+        // string fileDataDir = "gfx";
+
+        // //Combine application path with where the assets are (gfx dir)        
+        // string filePathBridge = Path.Combine(projectRoot, fileDataDir, "spaceShipBridge.jpg");
+        // string filePathDockingBay = Path.Combine(projectRoot, fileDataDir, "dockingBay.jpg");
+        // string filePathStorageRoom = Path.Combine(projectRoot, fileDataDir, "storageRoom.jpg");
+
+        // bridge.RoomGfx = Image.FromFile(filePathBridge);
+        // dockingBay.RoomGfx = Image.FromFile(filePathDockingBay);
+        // storageRoom.RoomGfx = Image.FromFile(filePathStorageRoom);
 
         //Add items to player inventory
         // player.Inventory.Add("some pocket lint");
